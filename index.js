@@ -4,8 +4,7 @@ const fs = require('fs'),
     pwd = process.cwd(),
     operation = process.argv[2], // new or delete
     pkgName = process.argv[3], // java 包名
-    mName = process.argv[4], // 模块名称
-    project_name = path.basename(pwd);
+    mName = process.argv[4]; // 模块名称
 
 switch (operation) {
     case 'new':
