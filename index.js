@@ -38,7 +38,9 @@ async function createEntity(pkgName, mName) {
             .replace(/\$createAt/g, new Date())
             .replace(/\$entityLower/g, mName.toLowerCase())
             .replace(/\$entity/g, mName);
-        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgName, 'entity', mName + '.java'), entity, (err) => {
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgPath, 'entity', mName + '.java'), entity, (err) => {
             if (err)
                 throw err;
             console.log(` ---> Create Entity\tsuccess...`);
@@ -50,7 +52,9 @@ async function createEntity(pkgName, mName) {
         let dto = tpl.dto.replace(/\$pkgName/g, pkgName)
             .replace(/\$createAt/g, new Date())
             .replace(/\$entity/g, mName);
-        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgName, 'dto', mName + 'Dto.java'), dto, (err) => {
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgPath, 'dto', mName + 'Dto.java'), dto, (err) => {
             if (err)
                 throw err;
             console.log(` ---> Create DTO\tsuccess...`);
@@ -62,7 +66,9 @@ async function createEntity(pkgName, mName) {
         let param = tpl.param.replace(/\$pkgName/g, pkgName)
             .replace(/\$createAt/g, new Date())
             .replace(/\$entity/g, mName);
-        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgName, 'param', mName + 'Param.java'), param, (err) => {
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgPath, 'param', mName + 'Param.java'), param, (err) => {
             if (err)
                 throw err;
             console.log(` ---> Create Param\tsuccess...`);
@@ -75,7 +81,9 @@ async function createEntity(pkgName, mName) {
             .replace(/\$createAt/g, new Date())
             .replace(/\$entityLower/g, mName.toLowerCase())
             .replace(/\$entity/g, mName);
-        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgName, 'sql', mName + 'Sql.java'), sql, (err) => {
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgPath, 'sql', mName + 'Sql.java'), sql, (err) => {
             if (err)
                 throw err;
             console.log(` ---> Create SQL\tsuccess...`);
@@ -89,7 +97,9 @@ async function createDao(pkgName, mName) {
         let dao = tpl.dao.replace(/\$pkgName/g, pkgName)
             .replace(/\$createAt/g, new Date())
             .replace(/\$entity/g, mName);
-        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgName, 'repository', mName + 'Dao.java'), dao, (err) => {
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgPath, 'repository', mName + 'Dao.java'), dao, (err) => {
             if (err)
                 throw err;
             console.log(` ---> Create Dao\tsuccess...`);
@@ -103,7 +113,9 @@ async function createMapper(pkgName, mName) {
         let mapper = tpl.mapper.replace(/\$pkgName/g, pkgName)
             .replace(/\$createAt/g, new Date())
             .replace(/\$entity/g, mName);
-        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgName, 'mapper', mName + 'Mapper.java'), mapper, (err) => {
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgPath, 'mapper', mName + 'Mapper.java'), mapper, (err) => {
             if (err)
                 throw err;
             console.log(` ---> Create Mapper\tsuccess...`);
@@ -117,7 +129,9 @@ async function createService(pkgName, mName) {
         let service = tpl.service.replace(/\$pkgName/g, pkgName)
             .replace(/\$createAt/g, new Date())
             .replace(/\$entity/g, mName);
-        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgName, 'service', mName + 'Service.java'), service, (err) => {
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgPath, 'service', mName + 'Service.java'), service, (err) => {
             if (err)
                 throw err;
             console.log(` ---> Create Service\tsuccess...`);
@@ -132,7 +146,9 @@ async function createRoute(pkgName, mName) {
             .replace(/\$createAt/g, new Date())
             .replace(/\$entityLower/g, mName.toLowerCase())
             .replace(/\$entity/g, mName);
-        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgName, 'ctrl', mName + 'Ctrl.java'), route, (err) => {
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgPath, 'ctrl', mName + 'Ctrl.java'), route, (err) => {
             if (err)
                 throw err;
             console.log(` ---> Create Controller\tsuccess...`);
@@ -146,56 +162,72 @@ async function createRoute(pkgName, mName) {
 async function deleteModule(pkgName, mName) {
     // 1.delete entity
     await new Promise((resolve, reject) => {
-        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgName, 'entity', mName + '.java'), (err) => { // asynchronous delete
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgPath, 'entity', mName + '.java'), (err) => { // asynchronous delete
             console.log(` ---> Delete Entity\tsuccess...`);
             resolve();
         });
     });
     // 2.delete dto
     await new Promise((resolve, reject) => {
-        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgName, 'dto', mName + 'Dto.java'), (err) => { // asynchronous delete
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgPath, 'dto', mName + 'Dto.java'), (err) => { // asynchronous delete
             console.log(` ---> Delete DTO\tsuccess...`);
             resolve();
         });
     });
     // 3.delete param
     await new Promise((resolve, reject) => {
-        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgName, 'param', mName + 'Param.java'), (err) => { // asynchronous delete
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgPath, 'param', mName + 'Param.java'), (err) => { // asynchronous delete
             console.log(` ---> Delete Param\tsuccess...`);
             resolve();
         });
     });
     // 4.delete dao
     await new Promise((resolve, reject) => {
-        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgName, 'dao', mName + 'Dao.java'), (err) => { // asynchronous delete
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgPath, 'dao', mName + 'Dao.java'), (err) => { // asynchronous delete
             console.log(` ---> Delete DAO\tsuccess...`);
             resolve();
         });
     });
     // 5.delete sql
     await new Promise((resolve, reject) => {
-        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgName, 'sql', mName + 'Sql.java'), (err) => { // asynchronous delete
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgPath, 'sql', mName + 'Sql.java'), (err) => { // asynchronous delete
             console.log(` ---> Delete SQL\tsuccess...`);
             resolve();
         });
     });
     // 6.delete mapper
     await new Promise((resolve, reject) => {
-        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgName, 'mapper', mName + 'Mapper.java'), (err) => { // asynchronous delete
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgPath, 'mapper', mName + 'Mapper.java'), (err) => { // asynchronous delete
             console.log(` ---> Delete Mapper\tsuccess...`);
             resolve();
         });
     });
     // 7.delete service
     await new Promise((resolve, reject) => {
-        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgName, 'service', mName + 'Service.java'), (err) => { // asynchronous delete
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgPath, 'service', mName + 'Service.java'), (err) => { // asynchronous delete
             console.log(` ---> Delete Service\tsuccess...`);
             resolve();
         });
     });
     // 8.delete route
     await new Promise((resolve, reject) => {
-        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgName, 'ctrl', mName + 'Ctrl.java'), (err) => { // asynchronous delete
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgPath, 'ctrl', mName + 'Ctrl.java'), (err) => { // asynchronous delete
             console.log(` ---> Delete Controller\tsuccess...`);
             resolve();
         });
