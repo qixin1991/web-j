@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs'),
     path = require('path'),
     tpl = require(path.join(__dirname, 'template')),
