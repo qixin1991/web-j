@@ -4,9 +4,10 @@ const fs = require('fs'),
     tpl = require(path.join(__dirname, 'template')),
     pluralize = require(path.join(__dirname, 'tools', 'pluralize.js')),
     pwd = process.cwd(),
-    operation = process.argv[2], // new or delete
-    pkgName = process.argv[3]; // java 包名
-let mName = process.argv[4]; // 模块名称
+    operation = process.argv[2] // new or delete
+
+let pkgName = process.argv[3], // java 包名
+    mName = process.argv[4]; // 模块名称
 
 // UserData -> userData
 String.prototype.firstLowerCase = function () {
@@ -30,6 +31,24 @@ String.prototype.snakeStr = function () {
 // category -> categories || person -> people || words -> words
 String.prototype.pluralize = function () {
     return pluralize.default(this);
+}
+
+if (mName == null || mName == "") { // pkgName not provide,so mName was pkgName position in the cmd.
+    mName = pkgName;
+    // load web-j.json
+    try {
+        let conf = require(path.join(pwd, 'web-j.json'));
+        if (conf.pkgName == null || conf.pkgName == "") {
+            console.error(`---> Package Name Can't be Empty!`);
+            process.exit(2);
+        } else {
+            pkgName = conf.pkgName;
+        }
+    } catch (e) {
+        console.error(`---> Package Name Can't be Empty!`);
+        process.exit(2);
+    }
+
 }
 
 mName = mName.firstUpperCase();

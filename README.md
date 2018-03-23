@@ -17,6 +17,16 @@ Example:
          web-j del io.qixin.sss.api Users                Delete all the module files.
 ```
 
+支持配置文件读取包名,在项目根目录下创建配置文件 `web-j.json`:
+
+```json
+{
+    "pkgName": "io.qixin.sss.api"
+}
+```
+
+如果配置了包名,则可以直接使用:  `web-j new User`
+
 单词转换为复数，使用了以下开源项目的部分源码:
 
 Thanks for [https://github.com/martinandert/inflected](https://github.com/martinandert/inflected)
