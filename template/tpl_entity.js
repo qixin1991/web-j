@@ -7,7 +7,7 @@ import javax.persistence.Table;
  * Created by web-j on $createAt
  */
 @Entity
-@Table(name = "$entityLowers")
+@Table(name = "$entityLower")
 public class $entity extends BaseEntity {
 
 }

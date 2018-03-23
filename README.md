@@ -16,3 +16,7 @@ Example:
          web-j new io.qixin.sss.api Users                Create Controller,Service,DAO,Mapper,Param,DTO,SQL files.
          web-j del io.qixin.sss.api Users                Delete all the module files.
 ```
+
+单词转换为复数，使用了以下开源项目的部分源码:
+
+Thanks for [https://github.com/martinandert/inflected](https://github.com/martinandert/inflected)

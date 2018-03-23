@@ -15,26 +15,26 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api(description = "")
 @RestController
-@RequestMapping("/$entityLowers")
+@RequestMapping("/$pluralize")
 public class $entityCtrl extends BaseCtrl{
 
     @Autowired
-    private $entityService $entityLowerService;
+    private $entityService $firstLowerService;
 
     @GetMapping("")
     public Res page(@ModelAttribute $entityParam param) {
-        return $entityLowerService.page(param);
+        return $firstLowerService.page(param);
     }
 
     @GetMapping("/{id}")
     public Res<$entityDto> detail(@PathVariable("id") Integer id) {
-        return $entityLowerService.detail(id);
+        return $firstLowerService.detail(id);
     }
 
     @PostMapping("")
     public Res<$entity> create(@RequestBody $entityParam param) {
-        $entity $entityLower = $entityLowerService.save(JsonConvert.transferData(param, $entity.class));
-        return new Res($entityLower);
+        $entity $firstLower = $firstLowerService.save(JsonConvert.transferData(param, $entity.class));
+        return new Res($firstLower);
     }
 }
 `

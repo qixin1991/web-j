@@ -20,26 +20,26 @@ import java.util.List;
 @Service
 public class $entityService extends BaseServiceImpl<$entity, Integer> {
 
-    private $entityDao $entityDao;
+    private $entityDao $firstLowerDao;
 
     @Autowired
-    private $entityMapper $entityMapper;
+    private $entityMapper $firstLowerMapper;
 
     @Override
     @Resource
     public void setBaseDao(BaseDao<$entity, Integer> baseDao) {
         this.baseDao = baseDao;
-        this.$entityDao = ($entityDao) baseDao;
+        this.$firstLowerDao = ($entityDao) baseDao;
     }
 
     public Res page($entityParam param) {
-        List list = $entityMapper.page(param);
-        Integer count = $entityMapper.pageCount(param);
+        List list = $firstLowerMapper.page(param);
+        Integer count = $firstLowerMapper.pageCount(param);
         return this.successWithPage(list, count);
     }
 
     public Res<$entityDto> detail(Integer id) {
-        return this.success($entityMapper.detail(id));
+        return this.success($firstLowerMapper.detail(id));
     }
 }
 `
