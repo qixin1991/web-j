@@ -23,7 +23,7 @@ public interface $entityMapper {
     @SelectProvider(type = $entitySql.class, method = "pageCount")
     Integer pageCount($entityParam param);
 
-    @Select("select * from $entity where id = #{id}")
+    @Select("select * from $entityLower where id = #{id}")
     $entityDto detail(Integer id);
 }
 `
