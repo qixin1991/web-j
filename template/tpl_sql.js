@@ -16,7 +16,7 @@ public class $entitySql {
         return sql.toString();
     }
 
-    public StringBuilder pageCondition($entityParam param) {
+    private StringBuilder pageCondition($entityParam param) {
         StringBuilder condition =  new StringBuilder("");
         return condition;
     }
