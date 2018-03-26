@@ -159,6 +159,7 @@ async function createMapper(pkgName, mName) {
     await new Promise((resolve, reject) => {
         let mapper = tpl.mapper.replace(/\$pkgName/g, pkgName)
             .replace(/\$createAt/g, new Date())
+            .replace(/\$entityLower/g, mName.snakeStr())            
             .replace(/\$entity/g, mName);
         let pkgPath = ""
         pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
