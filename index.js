@@ -122,6 +122,20 @@ async function createEntity(pkgName, mName) {
             resolve();
         })
     })
+    // 3.1create update param
+    await new Promise((resolve, reject) => {
+        let param = tpl.param.replace(/\$pkgName/g, pkgName)
+            .replace(/\$createAt/g, new Date())
+            .replace(/\$entity/g, mName);
+        let pkgPath = ""
+        pkgName.split('.').forEach((v) => { pkgPath += v + '/' })
+        fs.writeFile(path.join(pwd, 'src', 'main', 'java', pkgPath, 'param', mName + 'UpdateParam.java'), param, (err) => {
+            if (err)
+                throw err;
+            console.log(` ---> Create Update Param\tsuccess...`);
+            resolve();
+        })
+    })
     // 4.create sql class
     await new Promise((resolve, reject) => {
         let sql = tpl.sql.replace(/\$pkgName/g, pkgName)

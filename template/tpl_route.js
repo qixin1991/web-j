@@ -32,15 +32,15 @@ public class $entityCtrl extends BaseCtrl{
     }
 
     @PostMapping("")
-    public Res<$entity> create(@RequestBody $entityDto dto) {
-        dto.setId(null);
-        $entity $firstLower = $firstLowerService.save(JsonConvert.transferData(dto, $entity.class));
+    public Res<$entity> create(@RequestBody $entityUpdateParam param) {
+        param.setId(null);
+        $entity $firstLower = $firstLowerService.save(JsonConvert.transferData(param, $entity.class));
         return new Res($firstLower);
     }
 
     @PutMapping("")
-    public Res<$entity> update(@RequestBody $entityDto dto) {
-        $entity $firstLower = $firstLowerService.save(JsonConvert.transferData(dto, $entity.class));
+    public Res<$entity> update(@RequestBody $entityUpdateParam param) {
+        $entity $firstLower = $firstLowerService.save(JsonConvert.transferData(param, $entity.class));
         return new Res($firstLower);
     }
 

@@ -4,6 +4,7 @@ module.exports = {
     dto: require('./tpl_dto'),
     mapper: require('./tpl_mapper'),
     param: require('./tpl_param'),
+    updateParam: require('./tpl_update_param'),
     route: require('./tpl_route'),
     service: require('./tpl_service'),
     sql: require('./tpl_sql')
