@@ -3,6 +3,7 @@ module.exports = `package $pkgName.ctrl;
 import io.qixin.framework.context.Res;
 import io.qixin.framework.utils.JsonConvert;
 import $pkgName.dto.$entityDto;
+import $pkgName.dto.UserCacheInfo;
 import $pkgName.entity.$entity;
 import $pkgName.param.$entityParam;
 import $pkgName.service.$entityService;
@@ -34,13 +35,21 @@ public class $entityCtrl extends BaseCtrl{
     @PostMapping("")
     public Res<$entity> create(@RequestBody $entityUpdateParam param) {
         param.setId(null);
-        $entity $firstLower = $firstLowerService.save(JsonConvert.transferData(param, $entity.class));
+        UserCacheInfo cacheInfo = this.getUserInfo();
+        $firstLower.setCreatedBy(cacheInfo.getId());
+        $firstLower.setCreatedByName(cacheInfo.getUsername());
+        $entity $firstLower = JsonConvert.transferData(param, $entity.class);
+        $firstLower = $firstLowerService.save($firstLower);
         return new Res($firstLower);
     }
 
     @PutMapping("")
     public Res<$entity> update(@RequestBody $entityUpdateParam param) {
-        $entity $firstLower = $firstLowerService.save(JsonConvert.transferData(param, $entity.class));
+        UserCacheInfo cacheInfo = this.getUserInfo();
+        $firstLower.setUpdatedBy(cacheInfo.getId());
+        $firstLower.setUpdatedByName(cacheInfo.getUsername());
+        $entity $firstLower = JsonConvert.transferData(param, $entity.class);
+        $firstLower = $firstLowerService.save($firstLower);
         return new Res($firstLower);
     }
 
