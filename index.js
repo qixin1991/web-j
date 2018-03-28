@@ -124,7 +124,7 @@ async function createEntity(pkgName, mName) {
     })
     // 3.1create update param
     await new Promise((resolve, reject) => {
-        let param = tpl.param.replace(/\$pkgName/g, pkgName)
+        let param = tpl.updateParam.replace(/\$pkgName/g, pkgName)
             .replace(/\$createAt/g, new Date())
             .replace(/\$entity/g, mName);
         let pkgPath = ""

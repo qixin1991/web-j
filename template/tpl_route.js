@@ -6,6 +6,7 @@ import $pkgName.dto.$entityDto;
 import $pkgName.dto.UserCacheInfo;
 import $pkgName.entity.$entity;
 import $pkgName.param.$entityParam;
+import $pkgName.param.$entityUpdateParam;
 import $pkgName.service.$entityService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,9 @@ public class $entityCtrl extends BaseCtrl{
     public Res<$entity> create(@RequestBody $entityUpdateParam param) {
         param.setId(null);
         UserCacheInfo cacheInfo = this.getUserInfo();
+        $entity $firstLower = JsonConvert.transferData(param, $entity.class);        
         $firstLower.setCreatedBy(cacheInfo.getId());
         $firstLower.setCreatedByName(cacheInfo.getUsername());
-        $entity $firstLower = JsonConvert.transferData(param, $entity.class);
         $firstLower = $firstLowerService.save($firstLower);
         return new Res($firstLower);
     }
@@ -46,9 +47,9 @@ public class $entityCtrl extends BaseCtrl{
     @PutMapping("")
     public Res<$entity> update(@RequestBody $entityUpdateParam param) {
         UserCacheInfo cacheInfo = this.getUserInfo();
+        $entity $firstLower = JsonConvert.transferData(param, $entity.class);        
         $firstLower.setUpdatedBy(cacheInfo.getId());
         $firstLower.setUpdatedByName(cacheInfo.getUsername());
-        $entity $firstLower = JsonConvert.transferData(param, $entity.class);
         $firstLower = $firstLowerService.save($firstLower);
         return new Res($firstLower);
     }
