@@ -10,7 +10,7 @@ public class $entitySql {
 
 
     public String page($entityParam param) {
-        StringBuilder sql = new StringBuilder("select * from $entityLower as b where 1=1 ");
+        StringBuilder sql = new StringBuilder("select * from $entityLower as t where 1=1 ");
         sql.append(pageCondition(param));
         sql.append(" limit #{offset},#{size}");
         return sql.toString();
@@ -22,7 +22,7 @@ public class $entitySql {
     }
 
     public String pageCount($entityParam param) {
-        StringBuilder sql = new StringBuilder("select count(*) from $entityLower as b where 1=1 ");
+        StringBuilder sql = new StringBuilder("select count(*) from $entityLower as t where 1=1 ");
         sql.append(pageCondition(param));
         return sql.toString();
     }

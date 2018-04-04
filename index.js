@@ -28,6 +28,10 @@ String.prototype.snakeStr = function () {
     return this.firstLowerCase().replace(/([A-Z])/g, "_$1").toLowerCase();
 }
 
+String.prototype.restRouter = function () {
+    return this.firstLowerCase().replace(/([A-Z])/g, "-$1").toLowerCase();
+}
+
 // category -> categories || person -> people || words -> words
 String.prototype.pluralize = function () {
     return pluralize.default(this);
@@ -207,7 +211,7 @@ async function createRoute(pkgName, mName) {
     await new Promise((resolve, reject) => {
         let route = tpl.route.replace(/\$pkgName/g, pkgName)
             .replace(/\$createAt/g, new Date())
-            .replace(/\$pluralize/g, mName.pluralize().snakeStr())
+            .replace(/\$pluralize/g, mName.pluralize().restRouter())
             .replace(/\$firstLower/g, mName.firstLowerCase())
             .replace(/\$entity/g, mName);
         let pkgPath = ""
