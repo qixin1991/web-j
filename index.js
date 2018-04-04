@@ -260,6 +260,16 @@ async function deleteModule(pkgName, mName) {
             resolve();
         });
     });
+    // 3.1 delete update param
+    await new Promise((resolve, reject) => {
+        fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgPath, 'param', mName + 'UpdateParam.java'), (err) => { // asynchronous delete
+            if (err != null)
+                console.error(err);
+            else
+                console.log(` ---> Delete Update Param\tsuccess...`);
+            resolve();
+        });
+    });
     // 4.delete dao
     await new Promise((resolve, reject) => {
         fs.unlink(path.join(pwd, 'src', 'main', 'java', pkgPath, 'repository', mName + 'Dao.java'), (err) => { // asynchronous delete

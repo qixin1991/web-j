@@ -1,5 +1,6 @@
 module.exports = `package $pkgName.ctrl;
 
+import io.qixin.framework.context.Pager;
 import io.qixin.framework.context.Res;
 import io.qixin.framework.utils.JsonConvert;
 import $pkgName.dto.$entityDto;
@@ -24,7 +25,7 @@ public class $entityCtrl extends BaseCtrl{
     private $entityService $firstLowerService;
 
     @GetMapping("")
-    public Res page(@ModelAttribute $entityParam param) {
+    public Res<Pager<$entityDto>> page(@ModelAttribute $entityParam param) {
         return $firstLowerService.page(param);
     }
 
