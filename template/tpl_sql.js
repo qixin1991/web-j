@@ -1,7 +1,6 @@
 module.exports = `package $pkgName.sql;
 
 import $pkgName.param.$entityParam;
-import org.springframework.util.StringUtils;
 
 /**
  * Created by web-j on $createAt

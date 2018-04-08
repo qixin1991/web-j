@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(description = "")
 @RestController
 @RequestMapping("/$pluralize")
-public class $entityCtrl extends BaseCtrl{
+public class $entityCtrl extends BaseCtrl {
 
     @Autowired
     private $entityService $firstLowerService;
