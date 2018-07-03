@@ -4,7 +4,6 @@ import io.qixin.framework.context.Pager;
 import io.qixin.framework.context.Res;
 import io.qixin.framework.utils.JsonConvert;
 import $pkgName.dto.$entityDto;
-import $pkgName.dto.UserCacheInfo;
 import $pkgName.entity.$entity;
 import $pkgName.param.$entityParam;
 import $pkgName.param.$entityUpdateParam;
@@ -16,10 +15,10 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by web-j on $createAt
  */
-@Api(description = "")
+@Api(description = "$entity")
 @RestController
 @RequestMapping("/$pluralize")
-public class $entityCtrl extends BaseCtrl {
+public class $entityCtrl {
 
     @Autowired
     private $entityService $firstLowerService;
@@ -37,20 +36,14 @@ public class $entityCtrl extends BaseCtrl {
     @PostMapping("")
     public Res<$entity> create(@RequestBody $entityUpdateParam param) {
         param.setId(null);
-        UserCacheInfo cacheInfo = this.getUserInfo();
         $entity $firstLower = JsonConvert.transferData(param, $entity.class);        
-        $firstLower.setCreatedBy(cacheInfo.getId());
-        $firstLower.setCreatedByName(cacheInfo.getUsername());
         $firstLower = $firstLowerService.save($firstLower);
         return new Res($firstLower);
     }
 
     @PutMapping("")
     public Res<$entity> update(@RequestBody $entityUpdateParam param) {
-        UserCacheInfo cacheInfo = this.getUserInfo();
         $entity $firstLower = JsonConvert.transferData(param, $entity.class);        
-        $firstLower.setUpdatedBy(cacheInfo.getId());
-        $firstLower.setUpdatedByName(cacheInfo.getUsername());
         $firstLower = $firstLowerService.save($firstLower);
         return new Res($firstLower);
     }
