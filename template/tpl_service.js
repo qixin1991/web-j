@@ -1,5 +1,6 @@
 module.exports = `package $pkgName.service;
 
+import io.qixin.framework.context.Pager;
 import io.qixin.framework.context.Res;
 import $pkgName.dto.$entityDto;
 import $pkgName.entity.$entity;
