@@ -9,7 +9,6 @@ import $pkgName.repository.$entityDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -24,7 +23,7 @@ public class $entityService extends BaseService<$entity, Integer> {
     @Autowired
     private $entityMapper $firstLowerMapper;
 
-    public Res page($entityParam param) {
+    public Res<Pager<$entityDto>> page($entityParam param) {
         List list = $firstLowerMapper.page(param);
         Integer count = $firstLowerMapper.pageCount(param);
         return this.successWithPage(list, count);

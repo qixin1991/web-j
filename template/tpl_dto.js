@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModel;
 /**
  * Created by web-j on $createAt
  */
-@ApiModel("")
+@ApiModel("$entityDto")
 public class $entityDto {
     
     private Integer id;
